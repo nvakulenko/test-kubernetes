@@ -1,0 +1,30 @@
+########################## Docker #########################
+
+docker image build -f Dockerfile -t greeting:1.0-SNAPSHOT .
+docker container run -it -p 8080:8080 greeting:1.0-SNAPSHOT
+
+## Push image
+docker login
+docker tag greeting:1.0-SNAPSHOT nvakulenko/greeting:1.0-SNAPSHOT
+docker push nvakulenko/greeting:1.0-SNAPSHOT
+
+
+########################## K8s ###########################
+
+# Create Pod
+kubectl apply -f greeting.yaml
+
+#Start virtual machine
+minikube start; tput bel
+#Access web dashboard
+minikube dashboardss
+
+########################## Heml ##########################
+# create chart
+helm create greeting-chart
+
+# check chart
+helm lint ./greeting-chart
+
+# deploy chart
+helm install --name greeting-chart ./greeting-chart --set service.type=NodePort
