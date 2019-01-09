@@ -17,7 +17,7 @@ kubectl apply -f greeting.yaml
 #Start virtual machine
 minikube start; tput bel
 #Access web dashboard
-minikube dashboardss
+minikube dashboard
 
 ########################## Heml ##########################
 # create chart
@@ -28,3 +28,6 @@ helm lint ./greeting-chart
 
 # deploy chart
 helm install --name greeting-chart ./greeting-chart --set service.type=NodePort
+
+# access Application URL
+kubectl get ingress greeting-chart

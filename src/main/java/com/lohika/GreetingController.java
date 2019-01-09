@@ -16,4 +16,9 @@ public class GreetingController {
         return new Greeting(counter.incrementAndGet(),
                 String.format(template, name));
     }
+
+    @RequestMapping("/greeting/health")
+    public String health() {
+        return "health is ok";
+    }
 }

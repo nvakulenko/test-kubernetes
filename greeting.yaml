@@ -16,4 +16,4 @@ spec:
         - name: greeting
           image: nvakulenko/greeting:1.0-SNAPSHOT
           ports:
-            - containerPort: 80
+            - containerPort: 8080
