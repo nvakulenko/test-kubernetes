@@ -37,6 +37,11 @@ spec:
               port: 8080
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+        - name: mongo
+            image: mongo:3.1.4
+            ports:
+            containerPort: 27017
+            protocol: TCP
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
