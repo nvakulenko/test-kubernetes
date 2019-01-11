@@ -1,12 +1,12 @@
 ########################## Docker #########################
 
-docker image build -f Dockerfile -t greeting:1.0-SNAPSHOT .
-docker container run -it -p 8080:8080 greeting:1.0-SNAPSHOT
+docker image build -f Dockerfile -t greeting:1.1-SNAPSHOT .
+docker container run -it -p 8080:8080 greeting:1.1-SNAPSHOT
 
 ## Push image
 docker login
-docker tag greeting:1.0-SNAPSHOT nvakulenko/greeting:1.0-SNAPSHOT
-docker push nvakulenko/greeting:1.0-SNAPSHOT
+docker tag greeting:1.1-SNAPSHOT nvakulenko/greeting:1.1-SNAPSHOT
+docker push nvakulenko/greeting:1.1-SNAPSHOT
 
 
 ########################## K8s ###########################
@@ -14,9 +14,23 @@ docker push nvakulenko/greeting:1.0-SNAPSHOT
 # Create Pod
 kubectl apply -f greeting.yaml
 
-#Start virtual machine
+# access Application URL
+kubectl get ingress greeting-chart
+
+# get pods
+kubectl get pods
+
+# To access the pod you can do the following command:
+kubectl exec -it pod_name bash
+
+
+####################### Minicube ##########################
+
+# start / stop virtual machine
 minikube start; tput bel
-#Access web dashboard
+minikube stop
+
+# Access web dashboard
 minikube dashboard
 
 ########################## Heml ##########################
@@ -29,5 +43,4 @@ helm lint ./greeting-chart
 # deploy chart
 helm install --name greeting-chart ./greeting-chart --set service.type=NodePort
 
-# access Application URL
-kubectl get ingress greeting-chart
+

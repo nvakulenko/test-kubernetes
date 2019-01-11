@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: greeting
-  replicas: 2 # tells deployment to run 2 pods matching the template
+  replicas: 1 # tells deployment to run n pod(s) matching the template
   template:
     metadata:
       labels:
@@ -14,6 +14,10 @@ spec:
     spec:
       containers:
         - name: greeting
-          image: nvakulenko/greeting:1.0-SNAPSHOT
+          image: nvakulenko/greeting:1.1-SNAPSHOT
           ports:
             - containerPort: 8080
+        - name: mongo
+          image: mongo:3.4.1
+          ports:
+            - containerPort: 27017
